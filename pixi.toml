@@ -1,0 +1,12 @@
+[workspace]
+authors = ["Carol Willing <carolcode@willingconsulting.com>"]
+channels = ["conda-forge"]
+name = "pycon-2026-shiny"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = "==3.12"
+pip = ">=26.1.1,<27"

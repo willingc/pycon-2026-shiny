@@ -14,11 +14,13 @@ ui.input_select("y", "Y", num_cols, selected="body_mass_g")
 
 @reactive.calc
 def filtered():
+    print("filtering...")
     return dat[dat["species"].isin(input.species())]
 
 
 @render.plot
 def plot():
+    print("plotting")
     return (
         ggplot(filtered(), aes(x=input.x(), y=input.y(), color="species"))
         + geom_point(alpha=0.7)

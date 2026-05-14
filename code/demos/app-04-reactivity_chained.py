@@ -15,11 +15,13 @@ with ui.sidebar():
 
 @reactive.calc
 def filtered():
+    print("Filtering")
     return dat[dat["species"].isin(input.species())]
 
 
 @reactive.calc
 def summary():
+    print("Summarizing")
     return (
         filtered()
         .groupby("species")[input.y()]
@@ -31,6 +33,7 @@ def summary():
 
 @render.plot
 def plot():
+    print("plotting")
     return (
         ggplot(filtered(), aes(x=input.x(), y=input.y(), color="species"))
         + geom_point(alpha=0.7)

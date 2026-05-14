@@ -4,26 +4,17 @@ from shiny.express import input, render, ui
 
 dat = load_penguins().dropna()
 num_cols = dat.select_dtypes("float64").columns.tolist()
-species = dat.("species").unique().toList()
+print(f"Number of columns: {num_cols}")
+print(f"count of num_cols: {len(num_cols)}")
 
 ui.input_select("x", "", num_cols, selected="bill_depth_mm")
 ui.input_select("y", "", num_cols, selected="body_mass_g")
-ui.input_checkbox_group(
-    "species",
-    "Species",
-    species,
-    selected_species
-)
+
 
 @render.plot
 def plot():
-    return (ggplot(dat, aes(x=input.x(), y=input.y(), color="species")) +
-        geom_point(alpha=0.7) +
-        theme_minimal()
-    )
-
-@render.text
-def points_displayed():
     return (
-        print(42)
+        ggplot(dat, aes(x=input.x(), y=input.y(), color="species"))
+        + geom_point(alpha=0.7)
+        + theme_minimal()
     )
