@@ -4,6 +4,7 @@ Run as Shiny app:    shiny run test-install.py
 """
 
 import importlib
+import os
 import sys
 
 PACKAGES = {
@@ -45,6 +46,16 @@ def check_imports():
     return passed, failed
 
 
+def check_chromium():
+    """Check whether Playwright's Chromium browser is installed."""
+    try:
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as p:
+            return os.path.exists(p.chromium.executable_path)
+    except Exception:
+        return False
+
+
 if __name__ == "__main__":
     passed, failed = [], []
     print("Checking packages...\n")
@@ -58,9 +69,18 @@ if __name__ == "__main__":
             failed.append(pkg)
             print("✗")
     print(f"\n{len(passed)}/{len(PACKAGES)} packages OK")
-    if failed:
-        print(f"\nFailed: {', '.join(failed)}")
-        print("Try: pip install -r requirements.txt")
+
+    print("\nChecking Playwright browser...\n")
+    chromium_ok = check_chromium()
+    print(f"  chromium             {'✓' if chromium_ok else '✗'}")
+
+    if failed or not chromium_ok:
+        if failed:
+            print(f"\nFailed: {', '.join(failed)}")
+            print("Try: pip install -r requirements.txt")
+        if not chromium_ok:
+            print("\nChromium browser not installed.")
+            print("Try: playwright install chromium")
         sys.exit(1)
     print("\nAll good! Now run: shiny run test-install.py")
     sys.exit(0)
@@ -70,6 +90,7 @@ if __name__ == "__main__":
 from shiny.express import ui, render
 
 _passed, _failed = check_imports()
+_chromium_ok = check_chromium()
 
 ui.page_opts(title="This is a Shiny application test")
 
@@ -91,3 +112,21 @@ with ui.card():
             ))
         summary = f"{len(_passed)}/{len(PACKAGES)} packages OK"
         return ui.tags.div(ui.tags.p(ui.tags.strong(summary)), *rows)
+
+with ui.card():
+    ui.card_header("Playwright Browser")
+
+    @render.ui
+    def browser_status():
+        if _chromium_ok:
+            return ui.tags.div(
+                ui.tags.span("✓ ", style="color: #25C8EB;"),
+                ui.tags.code("chromium"),
+            )
+        return ui.tags.div(
+            ui.tags.div(
+                ui.tags.span("✗ ", style="color: #D47454;"),
+                ui.tags.code("chromium"),
+            ),
+            ui.tags.p("Run: ", ui.tags.code("playwright install chromium")),
+        )

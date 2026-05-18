@@ -74,6 +74,17 @@ pixi shell
 
 :::
 
+## Playwright Browser
+
+Shiny app testing uses [Playwright](https://playwright.dev/python/) to drive a real browser.
+After installing the Python packages, install the Chromium browser that Playwright will use:
+
+```bash
+playwright install chromium
+```
+
+This downloads a Playwright-managed copy of Chromium (about 150 MB) — it won't touch any browser you already have installed.
+
 ## IDE
 
 We recommend [Positron](https://positron.posit.co/), this is what the workshop will be using.

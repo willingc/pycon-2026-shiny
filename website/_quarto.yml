@@ -6,12 +6,12 @@ project:
     - "*.qmd"
 
 website:
-  announcement: 
-    icon: info-circle
-    dismissable: true
-    content: "This tutorials site is still a work in progress. Thanks to those who are checking it out early!"
-    type: danger
-    position: below-navbar
+  #announcement: 
+  #  icon: info-circle
+  #  dismissable: true
+  #  content: "This tutorials site is still a work in progress. Thanks to those who are checking it out early!"
+  #  type: danger
+  #  position: below-navbar
   title: "PyCon 2026: Shiny Dashboards"
   google-analytics: "G-XFPBQ3BZ6M"
   navbar:

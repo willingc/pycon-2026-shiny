@@ -3,6 +3,16 @@ title: Resources
 toc: false
 ---
 
+## My Related Talks
+
+- LLMs, Chatbots, and Dashboards: Visualize Your Data with Natural Language
+  - <https://www.youtube.com/watch?v=ESUvuemGmPQ&t=17s>
+  - <https://chendaniely.github.io/nydsaic2025-llm/>
+- Tips to Level-Up Your Shiny for Python Applications | PyData Global 2024
+  - <https://www.youtube.com/watch?v=2Cst7_s_4H8>
+- LLMs, Chatbots, and Dashboards_ Visualize Your Data with Natural Language - PyData Global 2025
+  - <https://www.youtube.com/watch?v=-czwZ_t6VUU&list=PLGVZCDnMOq0qmerwB1eITnr5AfYRGm0DF&index=50>
+
 ## Shiny
 
 - Shiny for Python docs: <https://shiny.posit.co/py/>
@@ -24,3 +34,16 @@ toc: false
 - chatlas: <https://posit-dev.github.io/chatlas/>
 - shinychat: <https://posit-dev.github.io/shinychat/py/>
 - querychat: <https://github.com/posit-dev/querychat>
+
+### Testing LLM output
+
+How do you test that the LLM is returning the correct result?
+This process is called "evals"
+
+- chatlas + evals: <https://posit-dev.github.io/chatlas/misc/evals.html>
+- inspectai evals framework: <https://inspect.aisi.org.uk/>
+
+I have a demo of chatlas + inspect ai here:
+
+- Tips to Level-Up Your Shiny for Python Applications | PyData Global 2024
+  - <https://www.youtube.com/watch?v=2Cst7_s_4H8>
